@@ -1,0 +1,55 @@
+def capitalize(s):
+    l1 = []
+    l2 = []
+    result = []
+    
+    i = 0
+    
+    while i < len(s):
+        if i%2 == 0:
+            c = s[i].upper()
+            l1.append(c)
+            l2.append(s[i])
+            i = i + 1
+        else:
+            c = s[i].upper()
+            l1.append(s[i])
+            l2.append(c)
+            i = i + 1
+            
+    s = ""
+    e = ""
+    
+    for let in l1:
+        s = s + let
+    
+    for tel in l2:
+        e = e + tel
+        
+        
+    result = [s,e]
+    
+    return result
+
+_________________________________________________________________________
+
+Test Cases:
+import random,string
+
+def capitalize_checker32(s):
+    return  ["".join( ch.upper() if not i % 2 else ch for i, ch in enumerate(s)),"".join( ch.upper() if i % 2 else ch for i, ch in enumerate(s))]
+    
+Test.it("Basic tests")
+Test.assert_equals(capitalize("abcdef"),['AbCdEf', 'aBcDeF'])
+Test.assert_equals(capitalize("codewars"),['CoDeWaRs', 'cOdEwArS'])
+Test.assert_equals(capitalize("abracadabra"),['AbRaCaDaBrA', 'aBrAcAdAbRa'])
+Test.assert_equals(capitalize("codewarriors"),['CoDeWaRrIoRs', 'cOdEwArRiOrS'])
+Test.assert_equals(capitalize("indexinglessons"),['InDeXiNgLeSsOnS', 'iNdExInGlEsSoNs'])
+Test.assert_equals(capitalize("codingisafunactivity"),['CoDiNgIsAfUnAcTiViTy', 'cOdInGiSaFuNaCtIvItY'])
+
+Test.it("Random tests")
+for i in range (100):
+    r = random.randrange(10,20)
+    s = ''.join(random.choice(string.ascii_lowercase) for letter in range(r))
+    Test.assert_equals(capitalize(s),capitalize_checker32(s))
+    
